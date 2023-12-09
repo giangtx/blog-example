@@ -19,6 +19,13 @@ Route::namespace('Api')->group(function () {
     Route::put('/blogs', 'BlogController@updateBlog');
     Route::delete('/blogs', 'BlogController@deleteBlog');
     Route::get('/blogs/user/{id}', 'BlogController@findByUser');
+
+
+    Route::get('/test', function() {
+        return response()->json([
+            'message' => 'Hello World!',
+        ], 200);
+    });
 });
 
 

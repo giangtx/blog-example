@@ -4,18 +4,23 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Services\BlogServiceManagement\BlogManagementService;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function __construct()
+
+    protected $blogManagementService;
+
+    public function __construct(BlogManagementService $blogManagementService)
     {
+        $this->blogManagementService = $blogManagementService;
     }
 
 
-    public function getAll(){
+    public function getAll(Request $request){
 
-        $blogs = Blog::all();
+        $blogs = $this->blogManagementService->getAll();
 
         return response()->json([
             'message' => 'success',
